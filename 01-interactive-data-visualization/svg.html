@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <script src="../d3.min.js" type="text/javascript" charset="utf-8"></script>
+      <link rel="stylesheet" type="test/css" href="../stylesheet.css">
+    </head>
+    <body>
+    <script type="text/javascript">
+        //create width and height variables for the svg 
+        var w = 500;
+        var h = 50;
+        var dataset = [5, 10, 15, 20, 25];
+        // creates svg, then sets width and height to 500 and 50 
+        var svg = d3.select('body').append('svg');
+        svg.attr('width', w)
+           .attr('height', h);
+
+        var circles = svg.selectAll('circle')
+            .data(dataset)
+            .enter()
+            .append('circle');
+
+        // not only data values, but data **INDICES** can also
+        // be passed automatically to functions with bound data
+        circles.attr('cx', function(d, i) {
+                return (i * 50) + 25;
+            })
+            .attr('cy', h/2)
+            .attr('r', function(d) {
+                    return d;
+            })
+            .attr('fill', function(d, i) {
+                    return [
+                        'red', 'green', 'blue', 'yellow', 'orange'
+                    ][i];
+            }); // fills each circle differently 
+    </script>
+    <!--- just a simple circle
+    <svg height="50px" width="500px">
+        <circle cx="25" cy="25" r="20"
+                fill="rgba(128, 0, 128, 0.75)"
+                stroke="rgba(0, 255, 0, 0.25)" stroke-width="10"
+                opacity="0.8"/>
+    </svg>
+    -->
+    </body>
+
+</html>
